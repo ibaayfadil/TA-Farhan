@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Data</title>
+    <style>
+        .status-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .status-success {
+            background-color: #d4edda;
+        }
+        .status-failed {
+            background-color: #f8d7da;
+        }
+        .status-running {
+            background-color: #cce5ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Data</h1>
+    {% for item in pipeline_data %}
+        <div class="status-box {% if item.status == 'success' %}status-success{% elif item.status == 'failed' %}status-failed{% else %}status-running{% endif %}">
+            <h3>{{ item.name }}</h3>
+            <p>Status: {{ item.status }}</p>
+            <p>ID: {{ item.id }}</p>
+            <p>Project ID: {{ item.project_id }}</p>
+            <p>SHA: {{ item.sha }}</p>
+            <p>Ref: {{ item.ref }}</p>
+            <p>Source: {{ item.source }}</p>
+            <p>Created At: {{ item.created_at }}</p>
+            <p>Updated At: {{ item.updated_at }}</p>
+            <p>Web URL: <a href="{{ item.web_url }}">{{ item.web_url }}</a></p>
+        </div>
+  
+    {% endfor %}
+</body>
+</html>
+{% endblock %}

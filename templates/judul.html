@@ -1,17 +1,44 @@
-<div class="text-center text-dark shadow-lg" style="background-color: #0A4D68; height: 200px;">
-    <br>
-    <h1 style="color: bisque;">Tugas Akhir Farhan</h1>
-    {% if user.is_authenticated %}
-      <p style="color: bisque;">halo, <strong>{{ user }}</strong>!</p>
-    
-      <nav class="nav justify-content-center">
-        <a href="{% url 'home' %}" class="nav-link text-white">Data TA</a>
-        <!-- <a href="{% url 'keygen' %}" class="nav-link text-white">KeyGen</a>
-        <a href="{% url 'buku' %}" class="nav-link text-white">Buku</a>
-        <a href="{% url 'dekripsi' %}" class="nav-link text-white">Dekripsi File</a>
-        <a href="{% url 'users' %}" class="nav-link text-white">User</a>
-        <a href="{% url 'keluar' %}" class="nav-link text-white">Keluar</a> -->
-      </nav>
-    {% endif %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <!-- Example Code -->
   
-  </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">TA FARHAN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'informasi' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'get_pipeline_data' %}">Get Pipeline</a>
+            </li>
+          </ul>
+          <form class="d-flex ml-auto" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+      
+    <!-- End Example Code -->
+  </body>
+</html>

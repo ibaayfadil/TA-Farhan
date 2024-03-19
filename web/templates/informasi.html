@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="text-align: justify;">
+    <h1 style="text-align: center;">Blue Green Deployment</h1>
+        <p>
+            Blue-green deployment adalah metode implementasi perangkat lunak yang bertujuan untuk menyediakan rilis aplikasi yang tanpa waktu henti 
+            (zero-downtime deployment) dan dapat digunakan untuk mengurangi risiko pengenalan perubahan besar pada aplikasi yang sudah berjalan. Dalam blue-green 
+            deployment, dua lingkungan yang identik dibuat: satu lingkungan disebut "blue" dan yang lainnya disebut "green".
+            <ul>
+                <li>Blue Environment: Ini adalah lingkungan produksi yang sedang berjalan saat ini. Aplikasi yang berada di lingkungan ini melayani lalu lintas 
+                    pengguna secara normal. 
+                </li>
+                <li>
+                    Green Environment: Ini adalah lingkungan baru yang siap untuk menerima perubahan atau pembaruan. Versi baru dari aplikasi akan diunggah
+                    dan diuji di lingkungan ini.
+                </li>
+            </ul>
+            Proses implementasi blue-green deployment melibatkan langkah-langkah berikut :
+            <ol>
+                <li>
+                    Pembaruan Lingkungan Hijau : Versi baru dari aplikasi diunggah dan diuji di lingkungan hijau tanpa mempengaruhi aplikasi yang berjalan 
+                    di lingkungan biru. Pengujian dilakukan secara menyeluruh untuk memastikan bahwa versi baru berfungsi seperti yang diharapkan.
+                </li>
+                <li>
+                    Pengalihan Lalu Lintas : Setelah versi baru dinyatakan siap untuk diimplementasikan, lalu lintas pengguna dialihkan dari lingkungan biru ke 
+                    lingkungan hijau. Pengalihan ini dapat dilakukan dengan memperbarui konfigurasi rute jaringan atau menggunakan alat manajemen lalu lintas 
+                    seperti load balancer.
+                </li>
+                <li>
+                    Monitor dan Validasi : Setelah pengalihan lalu lintas, aplikasi baru di lingkungan hijau akan terus dipantau untuk memastikan kinerjanya 
+                    yang stabil dan tidak ada masalah yang muncul. Jika ada masalah yang terdeteksi, lalu lintas pengguna dapat dialihkan kembali ke lingkungan 
+                    biru dengan cepat.
+                </li>
+                <li>
+                    Penyimpanan Lingkungan Lama : Setelah pengujian selesai dan aplikasi baru dianggap stabil, lingkungan biru dapat disimpan atau dihapus 
+                    jika tidak diperlukan lagi. Lingkungan hijau akan menjadi lingkungan produksi berjalan.
+                </li>
+            </ol>
+            Manfaat dari blue-green deployment termasuk kemampuan untuk melakukan pembaruan perangkat lunak dengan minimal risiko dan waktu henti, 
+            serta kemampuan untuk dengan cepat mengembalikan sistem ke versi sebelumnya jika terjadi masalah. Ini adalah salah satu pendekatan yang populer 
+            dalam praktik CI/CD (Continuous Integration/Continuous Deployment) dan DevOps.
+        </p>
+</div>
+{% endblock %}
