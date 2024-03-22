@@ -1,0 +1,130 @@
+<!-- {% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+        .status-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            float: left;
+            width: 20%; 
+        }
+        .status-success {
+            background-color: #d4edda;
+        }
+        .status-failed {
+            background-color: #d9534f;
+        }
+        .status-running {
+            background-color: #cce5ff;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+
+    <h1>API Data</h1>
+    
+    <div class="clearfix">
+        {% if pipeline_data %}
+            {% with latest_pipeline=pipeline_data.0 %}
+                <div class="status-box {% if latest_pipeline.status == 'success' %}status-success{% elif latest_pipeline.status == 'failed' %}status-failed{% else %}status-running{% endif %}">
+                    <h5>Status : {{ latest_pipeline.status }}</h5>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+                <div>
+                    <p>ID : {{ latest_pipeline.id }} and Project ID : {{ latest_pipeline.project_id }}</p>
+                </div>
+
+                <div>
+                    <p>SHA: {{ latest_pipeline.sha }}</p>
+                </div>
+
+                <div>
+                    <p>Ref: {{ latest_pipeline.ref }}</p>
+                </div>
+
+                <div>
+                    <p>Source: {{ latest_pipeline.source }}</p>
+                </div>
+
+                <div>
+                    <p>Created At: {{ latest_pipeline.created_at }}</p>
+                </div>
+
+                <div>
+                    <p>Updated At: {{ latest_pipeline.updated_at }}</p>
+                </div> -->
+
+                <!-- <div>
+                    <p>Web URL: <a href="{{ latest_pipeline.web_url }}">{{ latest_pipeline.web_url }}</a></p>
+                </div> -->
+
+            <!-- {% endwith %}
+        {% else %}
+            <p>No pipeline data available.</p>
+        {% endif %}
+    </div>
+{% endblock %} -->
+
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitoring Data Pipeline</title>
+    <style>
+        .status-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            float: left;
+            width: 20%;
+        }
+        .status-success {
+            background-color: #17ad3a;
+        }
+        .status-failed {
+            background-color: #d63340;
+        }
+        .status-running {
+            background-color: #4475ef;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Monitoring Proses Blue Green Deployment</h1>
+    
+    <div style="display: flex; justify-content: center; margin: 10px;">
+        <div class="status-box {% if pipeline_data.status == 'success' %}status-success{% elif pipeline_data.status == 'failed' %}status-failed{% else %}status-running{% endif %}">
+            <h5 style="color: #ffffff; font-weight: bold; margin: 0;" class="progress-bar progress-bar-striped" role="progressbar">Status: {{ pipeline_data.status }}</h5>
+        </div>
+        <div style="background-color: #4475ef; padding: 10px; text-align: center; margin-left: 10px; margin-bottom: 10px">
+            <h5 style="color: #ffffff; font-weight: bold; margin: 0;" class="progress-bar progress-bar-striped" role="progressbar">Duration: {{ pipeline_data.duration }} seconds</h5>
+        </div>
+    </div>
+
+    <p>Stage: {{ pipeline_data.stage}}</p>
+    <p>Developer : {{ pipeline_data.user.name }} ({{ pipeline_data.user.state }})</p>
+    <p>Message : {{ pipeline_data.commit.message }}</p>
+    <p>ID : {{ pipeline_data.id }} , Project ID : {{ pipeline_data.project_id }}</p>
+    <p>Created At: {{ pipeline_data.created_at }}</p>
+    <p>Started At: {{ pipeline_data.started_at }}</p>
+    <p>Finished At: {{ pipeline_data.finished_at }}</p>
+    <p>Duration: {{ pipeline_data.duration }} seconds</p>
+    <p>Reference : {{ pipeline_data.ref }} , Source : {{ pipeline_data.source }}</p>
+</body>
+</html>
+{% endblock %}

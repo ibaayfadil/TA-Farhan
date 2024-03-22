@@ -12,15 +12,18 @@ def informasi(request):
     return render(request, template)
 
 def get_pipeline_data(request):
-    api_url = 'https://gitlab.com/api/v4/projects/54304174/pipelines'
+    access_token = 'glpat-QhAKD253UX8cc9CLJKMs'  
+    # api_url = 'https://gitlab.com/api/v4/projects/56091294/pipelines/1223616642/'
+    api_url = 'https://gitlab.com/api/v4/projects/56091294/jobs'
+    headers = {'PRIVATE-TOKEN': access_token}
     try:
-        response = requests.get(api_url)
+        response = requests.get(api_url, headers=headers)
         data = response.json()
         context = {'pipeline_data': data}
-        template = 'get_pipeline_data.html'
+        template = 'pipeline.html'
         return render(request, template, context)
     except Exception as e:
         error_message = str(e)
         context = {'error_message': error_message}
-        template = 'get_pipeline_data.html'
+        template = 'pipeline.html'
         return render(request, template, context)
